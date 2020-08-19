@@ -2,6 +2,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:salao/consts/constantes.dart';
 import 'package:salao/pages/HomePage.dart';
+import 'package:salao/pages/RecoveryPassword.dart';
+import 'package:salao/pages/loginPage.dart';
 import 'package:salao/widgets/buttonInitialPage.dart';
 
 class RegisterPageTwo extends StatefulWidget {
@@ -110,6 +112,6 @@ class _RegisterPageTwoState extends State<RegisterPageTwo> {
     _formKey.currentState.save();
 
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 }

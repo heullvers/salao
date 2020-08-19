@@ -1,12 +1,21 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:salao/consts/constantes.dart';
+import 'package:salao/pages/HomePage.dart';
+import 'package:salao/pages/RecoveryPassword.dart';
 import 'package:salao/pages/registerPage.dart';
 import 'package:salao/widgets/buttonInitialPage.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   String email;
+
   String senha;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -58,11 +67,7 @@ class LoginPage extends StatelessWidget {
                   corBotao: Colors.black,
                   corTextoBotao: Colors.white,
                   clickBotao: () {
-                    if (!_formKey.currentState.validate()) {
-                      return;
-                    }
-
-                    _formKey.currentState.save();
+                    signIn();
                   },
                 ),
                 SizedBox(
@@ -73,9 +78,17 @@ class LoginPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Text(
-                        'Esqueceu sua senha?',
-                        style: TextStyle(color: Colors.blue),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RecoveryPassword()));
+                        },
+                        child: Text(
+                          'Esqueceu sua senha?',
+                          style: TextStyle(color: Colors.blue),
+                        ),
                       ),
                     ],
                   ),
@@ -109,5 +122,16 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void signIn() {
+    if (!_formKey.currentState.validate()) {
+      return;
+    }
+
+    _formKey.currentState.save();
+
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 }
