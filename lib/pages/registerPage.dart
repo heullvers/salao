@@ -39,148 +39,160 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 170, left: 20, right: 20, bottom: 20),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                TextFormField(
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Você precisa preencher seu nome';
-                    }
-                  },
-                  onSaved: (value) => nome = value,
-                  decoration: ConstantesApp.decorationInput(
-                      'NOME', Icons.insert_emoticon),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Você precisa preencher sua data de nascimento';
-                    }
-                    if (value.length < 10) {
-                      return 'Preencha a data de nascimento corretamente';
-                    }
-                  },
-                  onSaved: (value) => dataNascimento = value,
-                  maxLength: 10,
-                  decoration: ConstantesApp.decorationInput(
-                      'DATA DE NASCIMENTO', Icons.cake),
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [maskFormatterData],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Você precisa preencher seu telefone.';
-                    }
-                    if (value.length < 15) {
-                      return 'Preencha o telefone corretamente';
-                    }
-                  },
-                  onSaved: (value) => numeroTelefone = value,
-                  maxLength: 15,
-                  keyboardType: TextInputType.number,
-                  decoration: ConstantesApp.decorationInput(
-                      'TELEFONE', Icons.local_phone),
-                  inputFormatters: [maskFormatter],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                    padding: EdgeInsets.all(6.5),
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.grey)),
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Icon(Icons.person),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0),
-                                child: Text(
-                                  'SEXO',
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.grey),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Row(
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    TextFormField(
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Você precisa preencher seu nome';
+                        }
+                      },
+                      onSaved: (value) => nome = value,
+                      decoration: ConstantesApp.decorationInput(
+                          'NOME', Icons.insert_emoticon),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Você precisa preencher sua data de nascimento';
+                        }
+                        if (value.length < 10) {
+                          return 'Preencha a data de nascimento corretamente';
+                        }
+                      },
+                      onSaved: (value) => dataNascimento = value,
+                      maxLength: 10,
+                      decoration: ConstantesApp.decorationInput(
+                          'DATA DE NASCIMENTO', Icons.cake),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [maskFormatterData],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Você precisa preencher seu telefone.';
+                        }
+                        if (value.length < 15) {
+                          return 'Preencha o telefone corretamente';
+                        }
+                      },
+                      onSaved: (value) => numeroTelefone = value,
+                      maxLength: 15,
+                      keyboardType: TextInputType.number,
+                      decoration: ConstantesApp.decorationInput(
+                          'TELEFONE', Icons.local_phone),
+                      inputFormatters: [maskFormatter],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                        padding: EdgeInsets.all(6.5),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey)),
+                        child: Column(
+                          //aqui pra esquerda
                           children: <Widget>[
-                            Radio(
-                              value: 1,
-                              groupValue: selectedRadio,
-                              onChanged: (value) {
-                                setSelectedRadio(value);
-                              },
-                              activeColor: Colors.black,
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(Icons.person),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: Text(
+                                      'SEXO',
+                                      style: TextStyle(
+                                          fontSize: 14, color: Colors.grey),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                            Text('Masculino'),
-                            Radio(
-                              value: 2,
-                              groupValue: selectedRadio,
-                              onChanged: (value) {
-                                setSelectedRadio(value);
-                              },
-                              activeColor: Colors.black,
+                            Column(
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Radio(
+                                      value: 1,
+                                      groupValue: selectedRadio,
+                                      onChanged: (value) {
+                                        setSelectedRadio(value);
+                                      },
+                                      activeColor: Colors.black,
+                                    ),
+                                    Text('Masculino'),
+                                    Radio(
+                                      value: 2,
+                                      groupValue: selectedRadio,
+                                      onChanged: (value) {
+                                        setSelectedRadio(value);
+                                      },
+                                      activeColor: Colors.black,
+                                    ),
+                                    Text('Feminino'),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Radio(
+                                      value: 3,
+                                      groupValue: selectedRadio,
+                                      onChanged: (value) {
+                                        setSelectedRadio(value);
+                                      },
+                                      activeColor: Colors.black,
+                                    ),
+                                    Text('Outro'),
+                                  ],
+                                )
+                              ],
                             ),
-                            Text('Feminino'),
-                            Radio(
-                              value: 3,
-                              groupValue: selectedRadio,
-                              onChanged: (value) {
-                                setSelectedRadio(value);
-                              },
-                              activeColor: Colors.black,
-                            ),
-                            Text('Outro'),
                           ],
-                        ),
-                      ],
-                    )),
-                SizedBox(
-                  height: 80,
+                        )),
+                    SizedBox(
+                      height: 80,
+                    ),
+                    ButtonInitialPage(
+                      nomeBotao: 'PRÓXIMO',
+                      corBotao: Colors.black,
+                      corTextoBotao: Colors.white,
+                      clickBotao: () {
+                        if (!_formKey.currentState.validate()) {
+                          return;
+                        }
+
+                        _formKey.currentState.save();
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => RegisterPageTwo(
+                                      nome: nome,
+                                      dataNascimento: dataNascimento,
+                                      sexo: selectedRadio,
+                                      numeroTelefone: numeroTelefone,
+                                    )));
+                      },
+                    )
+                  ],
                 ),
-                ButtonInitialPage(
-                  nomeBotao: 'PRÓXIMO',
-                  corBotao: Colors.black,
-                  corTextoBotao: Colors.white,
-                  clickBotao: () {
-                    if (!_formKey.currentState.validate()) {
-                      return;
-                    }
-
-                    _formKey.currentState.save();
-
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegisterPageTwo(
-                                  nome: nome,
-                                  dataNascimento: dataNascimento,
-                                  sexo: selectedRadio,
-                                  numeroTelefone: numeroTelefone,
-                                )));
-                  },
-                )
-              ],
+              ),
             ),
           ),
         ),

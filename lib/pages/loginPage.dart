@@ -21,104 +21,123 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 200, left: 20, right: 20, bottom: 20),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+      resizeToAvoidBottomPadding: false,
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Stack(
+          children: <Widget>[
+            Row(
               children: <Widget>[
-                TextFormField(
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Você precisa preencher seu e-mail.';
-                    }
-                    final bool isValid = EmailValidator.validate(value);
-                    if (!isValid) {
-                      return "Email inválido";
-                    }
-                  },
-                  onSaved: (value) => email = value,
-                  decoration:
-                      ConstantesApp.decorationInput('E-MAIL', Icons.email),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Você precisa preencher sua senha.';
-                    }
-                  },
-                  onChanged: (value) => senha = value,
-                  obscureText: true,
-                  onSaved: (value) => senha = value,
-                  decoration:
-                      ConstantesApp.decorationInput('SENHA', Icons.https),
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                ButtonInitialPage(
-                  nomeBotao: 'ENTRAR',
-                  corBotao: Colors.black,
-                  corTextoBotao: Colors.white,
-                  clickBotao: () {
-                    signIn();
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                GestureDetector(
-                  onTap: () {},
+                Form(
+                    key: _formKey,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          width: MediaQuery.of(context).size.width - 40,
+                          height: MediaQuery.of(context).size.height - 40,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              TextFormField(
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Você precisa preencher seu e-mail.';
+                                  }
+                                  final bool isValid =
+                                      EmailValidator.validate(value);
+                                  if (!isValid) {
+                                    return "Email inválido";
+                                  }
+                                },
+                                onSaved: (value) => email = value,
+                                decoration: ConstantesApp.decorationInput(
+                                    'E-MAIL', Icons.email),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              TextFormField(
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Você precisa preencher sua senha.';
+                                  }
+                                },
+                                onChanged: (value) => senha = value,
+                                obscureText: true,
+                                onSaved: (value) => senha = value,
+                                decoration: ConstantesApp.decorationInput(
+                                    'SENHA', Icons.https),
+                              ),
+                              SizedBox(
+                                height: 50,
+                              ),
+                              ButtonInitialPage(
+                                nomeBotao: 'ENTRAR',
+                                corBotao: Colors.black,
+                                corTextoBotao: Colors.white,
+                                clickBotao: () {
+                                  signIn();
+                                },
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  RecoveryPassword()));
+                                    },
+                                    child: Text(
+                                      'Esqueceu sua senha?',
+                                      style: TextStyle(color: Colors.blue),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    )),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => RecoveryPassword()));
-                        },
-                        child: Text(
-                          'Esqueceu sua senha?',
-                          style: TextStyle(color: Colors.blue),
+                      Text(
+                        'Ainda não possui uma conta? ',
+                      ),
+                      Flexible(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => RegisterPage()));
+                          },
+                          child: Text(
+                            'Cadastre-se',
+                            style: TextStyle(color: Colors.blue),
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 150,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Ainda não possui uma conta?   ',
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => RegisterPage()));
-                      },
-                      child: Text(
-                        'Cadastre-se',
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                    )
-                  ],
-                )
               ],
-            ),
-          ),
+            )
+          ],
         ),
       ),
     );
