@@ -32,16 +32,17 @@ class EstabelecimentosCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 4 - 20,
+      height: MediaQuery.of(context).size.height / 3.5,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: Color(0xffEBF6FF)),
+          borderRadius: BorderRadius.circular(20), color: Colors.black),
       child: Stack(
         children: <Widget>[
           Positioned(
-            top: 20,
-            child: Image.asset(estabelecimentos[estabelecimentoIndex].imgUrl),
-            width: MediaQuery.of(context).size.width * 0.60,
-          )
+              top: 20,
+              child: Image.asset(
+                estabelecimentos[estabelecimentoIndex].imgUrl,
+                width: MediaQuery.of(context).size.width * 0.60,
+              ))
         ],
       ),
     );
