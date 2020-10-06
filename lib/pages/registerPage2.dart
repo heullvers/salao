@@ -1,25 +1,16 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:salao/consts/constantes.dart';
-import 'package:salao/pages/HomePage.dart';
-import 'package:salao/pages/RecoveryPassword.dart';
 import 'package:salao/pages/loginPage.dart';
 import 'package:salao/widgets/buttonInitialPage.dart';
 
 class RegisterPageTwo extends StatefulWidget {
-  final nome;
-  final dataNascimento;
-  final sexo;
-  final numeroTelefone;
-
-  const RegisterPageTwo(
-      {this.nome, this.dataNascimento, this.sexo, this.numeroTelefone});
-
   @override
   _RegisterPageTwoState createState() => _RegisterPageTwoState();
 }
 
 class _RegisterPageTwoState extends State<RegisterPageTwo> {
+  String nome;
   String email;
   String senha;
 
@@ -38,6 +29,19 @@ class _RegisterPageTwoState extends State<RegisterPageTwo> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    TextFormField(
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Você precisa preencher seu nome';
+                        }
+                      },
+                      onSaved: (value) => nome = value,
+                      decoration: ConstantesApp.decorationInput(
+                          'NOME', Icons.insert_emoticon),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     TextFormField(
                       validator: (value) {
                         if (value.isEmpty) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:salao/consts/constantes.dart';
 import 'package:salao/pages/loginPage.dart';
-import 'package:salao/pages/registerPage.dart';
+import 'package:salao/pages/registerPage2.dart';
 import 'package:salao/widgets/buttonInitialPage.dart';
 
 class InitialPage extends StatelessWidget {
@@ -22,7 +22,7 @@ class InitialPage extends StatelessWidget {
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 164,
+                height: MediaQuery.of(context).size.height / 4.5,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15),
@@ -58,7 +58,7 @@ class InitialPage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RegisterPage()));
+                            builder: (context) => RegisterPageTwo()));
                   },
                 ),
               )

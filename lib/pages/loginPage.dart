@@ -4,6 +4,7 @@ import 'package:salao/consts/constantes.dart';
 import 'package:salao/pages/HomePage.dart';
 import 'package:salao/pages/RecoveryPassword.dart';
 import 'package:salao/pages/registerPage.dart';
+import 'package:salao/presentation/my_flutter_app_icons.dart';
 import 'package:salao/widgets/buttonInitialPage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -100,6 +101,82 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ],
                               ),
+                              Column(
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: new Container(
+                                            margin: const EdgeInsets.only(
+                                                left: 10.0, right: 15.0),
+                                            child: Divider(
+                                              color: Colors.black,
+                                              height: 50,
+                                            )),
+                                      ),
+                                      Text("Ou faça login usando "),
+                                      Expanded(
+                                        child: new Container(
+                                            margin: const EdgeInsets.only(
+                                                left: 15.0, right: 10.0),
+                                            child: Divider(
+                                              color: Colors.black,
+                                              height: 50,
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      RaisedButton.icon(
+                                          color: Colors.white,
+                                          icon: Icon(
+                                            MyFlutterApp.facebook,
+                                            size: 18.0,
+                                            color: Color(0xff3b5998),
+                                          ),
+                                          shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  color: Color(0xff3b5998),
+                                                  width: 1)),
+                                          onPressed: () => {},
+                                          label: Text(
+                                            'Entrar com facebook',
+                                            style: TextStyle(
+                                                fontSize: 18.0,
+                                                color: Color(0xff3b5998)),
+                                          ))
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      RaisedButton.icon(
+                                          color: Colors.white,
+                                          icon: Icon(
+                                            MyFlutterApp.gmail,
+                                            size: 18.0,
+                                            color: Color(0xffD44638),
+                                          ),
+                                          shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  color: Color(0xffD44638),
+                                                  width: 0.5)),
+                                          onPressed: () => {},
+                                          label: Text(
+                                            'Entrar com gmail',
+                                            style: TextStyle(
+                                                fontSize: 18.0,
+                                                color: Color(0xffD44638)),
+                                          ))
+                                    ],
+                                  )
+                                ],
+                              )
                             ],
                           ),
                         )

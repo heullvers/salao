@@ -125,7 +125,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             Column(
                               children: <Widget>[
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Radio(
                                       value: 1,
@@ -136,6 +135,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                       activeColor: Colors.black,
                                     ),
                                     Text('Masculino'),
+                                  ],
+                                ),
+                                Row(
+                                  children: <Widget>[
                                     Radio(
                                       value: 2,
                                       groupValue: selectedRadio,
@@ -148,7 +151,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ],
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Radio(
                                       value: 3,
@@ -182,12 +184,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => RegisterPageTwo(
-                                      nome: nome,
-                                      dataNascimento: dataNascimento,
-                                      sexo: selectedRadio,
-                                      numeroTelefone: numeroTelefone,
-                                    )));
+                                builder: (context) => RegisterPageTwo()));
                       },
                     )
                   ],

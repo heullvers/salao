@@ -52,6 +52,13 @@ flutter:
     - assets/images/estabelecimentoUm.png
     - assets/images/estabelecimentoDois.png
     - assets/images/estabelecimentoTres.png
+    - assets/images/pexels-frederico-erthal-3571569.jpg
+    - assets/images/pexels-thiszun-(follow-me-on-ig-fb)-3653376.jpg
+    - assets/images/pexels-mica-asato-1198168.jpg
+    - assets/images/pexels-martí-pardo-1657338.jpg
+    - assets/images/pexels-thiszun-(follow-me-on-ig-fb)-3653345.jpg
+
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -66,9 +73,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Schyler
+
+    - family:  MyFlutterApp
       fonts:
-        - asset: assets/fonts/Staatliches-Regular.ttf
+        - asset: assets/fonts/MyFlutterApp.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
