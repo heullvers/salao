@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Api> _api;
+  Timer _everySecond;
 
   Future<List<Api>> _getUser() async {
     try {
@@ -36,6 +38,14 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _getUser().then((map) {
       _api = map;
+    });
+
+    _everySecond = Timer.periodic(Duration(seconds: 30), (Timer t) {
+      setState(() {
+        _getUser().then((map) {
+          _api = map;
+        });
+      });
     });
   }
 
