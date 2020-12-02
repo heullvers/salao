@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
   Future<Null> fetchData() async {
     setState(() {
       loading = true;
+      _list = [];
     });
 
     final response = await http.get('http://10.0.2.2:5000/jogos');
@@ -87,17 +88,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // _getUser().then((map) {
-    //   _api = map;
-    // });
 
-    // _everySecond = Timer.periodic(Duration(seconds: 30), (Timer t) {
-    //   setState(() {
-    //     _getUser().then((map) {
-    //       _api = map;
-    //     });
-    //   });
-    // });
+    _everySecond = Timer.periodic(Duration(seconds: 30), (Timer t) {
+      fetchData();
+    });
     fetchData();
   }
 
@@ -105,31 +99,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Container(
-          child: Card(
-            child: ListTile(
-              leading: Icon(Icons.search),
-              title: TextField(
-                controller: controller,
-                onChanged: onSearch,
-                style: TextStyle(color: Colors.black),
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintStyle: TextStyle(color: Colors.black)),
-              ),
-              trailing: IconButton(
-                icon: Icon(Icons.cancel),
-                onPressed: () {
-                  controller.clear();
-                  onSearch('');
-                },
-              ),
-            ),
-          ),
-        ),
-      ),
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -157,6 +126,41 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      appBar: AppBar(
+          backgroundColor: Colors.black,
+          automaticallyImplyLeading: false,
+          actions: <Widget>[
+            isSearching
+                ? IconButton(
+                    icon: Icon(Icons.cancel),
+                    onPressed: () {
+                      setState(() {
+                        this.isSearching = false;
+                      });
+                    })
+                : IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      setState(() {
+                        this.isSearching = true;
+                      });
+                    })
+          ],
+          title: !isSearching
+              ? Text('Jogos ao vivo')
+              : TextField(
+                  controller: controller,
+                  onChanged: onSearch,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                      hintText: "Pesquisar jogo",
+                      border: InputBorder.none,
+                      icon: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                      hintStyle: TextStyle(color: Colors.white)),
+                )),
       body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
