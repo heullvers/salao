@@ -1,7 +1,8 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:salao/consts/constantes.dart';
-import 'package:salao/pages/loginPage.dart';
 import 'package:salao/widgets/buttonInitialPage.dart';
 
 class RegisterPageTwo extends StatefulWidget {
@@ -10,11 +11,22 @@ class RegisterPageTwo extends StatefulWidget {
 }
 
 class _RegisterPageTwoState extends State<RegisterPageTwo> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   String nome;
   String email;
   String senha;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  Future<void> createUser({String email, String senha}) async {
+    try {
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: senha);
+    } on PlatformException catch (e) {
+      print(e.code);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +130,9 @@ class _RegisterPageTwoState extends State<RegisterPageTwo> {
 
     _formKey.currentState.save();
 
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LoginPage()));
+    createUser(email: this.email, senha: this.senha);
+
+    // Navigator.push(
+    //     context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 }

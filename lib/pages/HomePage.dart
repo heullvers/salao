@@ -24,38 +24,24 @@ class _HomePageState extends State<HomePage> {
   bool isSearching = false;
 
   Future<Null> fetchData() async {
-    setState(() {
-      loading = true;
-      _list = [];
-    });
+    if (this.mounted) {
+      setState(() {
+        loading = true;
+        _list = [];
+      });
+    }
 
     final response = await http.get('http://10.0.2.2:5000/jogos');
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      setState(() {
-        for (Map i in data) {
-          _list.add(Partida.formJson(i));
-          loading = false;
-        }
-      });
-    }
-  }
-
-  Future<List<Api>> _getUser() async {
-    try {
-      List<Api> listUser = List();
-      final response = await http.get('http://10.0.2.2:5000/jogos');
-      if (response.statusCode == 200) {
-        var decodeJson = jsonDecode(response.body);
-        decodeJson.forEach((item) => listUser.add(Api.fromJson(item)));
-        return listUser;
-      } else {
-        print("ELSE Erro ao carregar lista");
-        return null;
+      if (this.mounted) {
+        setState(() {
+          for (Map i in data) {
+            _list.add(Partida.formJson(i));
+            loading = false;
+          }
+        });
       }
-    } catch (e) {
-      print("EXCEÇÃO Erro ao carregar lista");
-      return null;
     }
   }
 

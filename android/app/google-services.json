@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "700480793545",
+    "project_id": "firstime-45b43",
+    "storage_bucket": "firstime-45b43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700480793545:android:3e51755430f15675f99618",
+        "android_client_info": {
+          "package_name": "com.example.salao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700480793545-3e7h4jq63aeq2ob6ungbu933f43icvqp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkpEyTDaHZW2fqDrT-KHBNjhMo_Wm0KhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700480793545-3e7h4jq63aeq2ob6ungbu933f43icvqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

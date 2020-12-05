@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:salao/consts/constantes.dart';
 import 'package:salao/pages/HomePage.dart';
 import 'package:salao/pages/RecoveryPassword.dart';
-import 'package:salao/pages/registerPage.dart';
+import 'package:salao/pages/registerPage2.dart';
 import 'package:salao/presentation/my_flutter_app_icons.dart';
 import 'package:salao/widgets/buttonInitialPage.dart';
 
@@ -201,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => RegisterPage()));
+                                    builder: (context) => RegisterPageTwo()));
                           },
                           child: Text(
                             'Cadastre-se',
